@@ -11,6 +11,7 @@ type Props = {
   excerpt: string
   author: Author
   slug: string
+  isCourse?: Boolean
 }
 
 const HeroPost = ({
@@ -20,6 +21,7 @@ const HeroPost = ({
   excerpt,
   author,
   slug,
+  isCourse,
 }: Props) => {
   return (
     <section className="rounded-md ">
@@ -30,8 +32,8 @@ const HeroPost = ({
         <div>
           <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
             <Link
-              as={`/posts/${slug}`}
-              href="/posts/[slug]"
+          as={isCourse ? `/courses/${slug}` : `/posts/${slug}`}
+          href={isCourse ? `/courses/[slug]` : "/posts/[slug]"}
               className="hover:underline"
             >
               {title}

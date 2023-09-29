@@ -51,9 +51,9 @@ export default function Index({ allPosts, allCourses }: Props) {
     return (
         <>
             <div className="bg-cyan-900 p-12 mb-16">
-                <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col lg:flex-row">
 
-                    <div className="md:w-1/2 p-12">
+                    <div className="lg:w-1/2 p-12">
                         <Card className="bg-cyan-900 border-none text-slate-50">
                             <CardHeader className="">
                                 <CardTitle>Welcome to The Academic's Field Guide to Writing Code</CardTitle>
@@ -90,7 +90,7 @@ export default function Index({ allPosts, allCourses }: Props) {
                             </CardFooter>
                         </Card>
                     </div>
-                    <div className="md:w-1/2 flex justify-center items-center mb-4 sm:mb-0">
+                    <div className="lg:w-1/2 flex justify-center items-center mb-4 sm:mb-0">
                         <PythonProvider packages={packages}>
                         <CodeBlock defaultCode={exampleCode}/>
 </PythonProvider>
@@ -114,6 +114,7 @@ export default function Index({ allPosts, allCourses }: Props) {
                                 author={heroCourse.author}
                                 slug={heroCourse.slug}
                                 excerpt={heroCourse.excerpt}
+                                isCourse={true} 
                             />
                         )}
                     </div>
@@ -153,6 +154,7 @@ export const getStaticProps = async () => {
         'author',
         'coverImage',
         'excerpt',
+        'isCourse',
     ])
 
     const allCourses = getAllCourses([
@@ -162,6 +164,7 @@ export const getStaticProps = async () => {
         'author',
         'coverImage',
         'excerpt',
+        'isCourse',
     ])
 
     return {

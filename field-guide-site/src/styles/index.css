@@ -1,7 +1,9 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -73,4 +75,83 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+/* Reset some default browser styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1em;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
+
+/* Figure and Figcaption */
+figure {
+  margin: 15px 0;
+}
+
+figcaption {
+  font-style: italic;
+  color: #666;
+}
+
+/* Footer */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8em;
+  color: #666;
+}
+.prose {
+    max-width: 100%;
 }

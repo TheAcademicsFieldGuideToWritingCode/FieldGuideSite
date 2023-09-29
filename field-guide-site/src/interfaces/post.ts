@@ -10,6 +10,7 @@ type PostType = {
   ogImage: {
     url: string
   }
+    isCourse: boolean
   content: string
 }
 
