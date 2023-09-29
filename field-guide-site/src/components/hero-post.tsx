@@ -22,7 +22,7 @@ const HeroPost = ({
   slug,
 }: Props) => {
   return (
-    <section>
+    <section className="rounded-md ">
       <div className="mb-8 md:mb-16">
         <CoverImage title={title} src={coverImage} slug={slug} />
       </div>

@@ -1,50 +1,67 @@
 
 import { useState, useEffect } from 'react'
 import { usePython } from 'react-py'
+import Editor from '@monaco-editor/react';
 
-type CodeBlockProps = {
-    defaultCode?: string;
+
+const packages = {
+  official: [],
+  micropip: ['orjson', 'python-cowsay', 'requests'],
 }
+
 
 function CodeBlock({ defaultCode = '' }: CodeBlockProps) {
   const [input, setInput] = useState(defaultCode);
+  const { runPython, stdout, stderr, isLoading, isRunning } = usePython(packages);
 
-  // Use the usePython hook to run code and access both stdout and stderr
-  const { runPython, stdout, stderr, isLoading, isRunning } = usePython();
+
 
   useEffect(() => {
-    // If defaultCode prop changes, update the input state
     setInput(defaultCode);
   }, [defaultCode]);
 
+  const handleEditorChange = (value, event) => {
+    setInput(value);
+  };
+
   return (
-    <>
-      {isLoading ? <p>Loading...</p> : <p>Ready!</p>}
-      <form>
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter your code here"
-        />
-        <input
-          type="submit"
-          value={!isRunning ? 'Run' : 'Running...'}
-          disabled={isLoading || isRunning}
-          onClick={(e) => {
-            e.preventDefault();
-            runPython(input);
+    <div className="p-4 bg-gray-800 text-white rounded-md w-full">
+      {isLoading ? (
+        <p className="text-yellow-500">Loading...</p>
+      ) : (
+        <p className="text-green-500">Ready!</p>
+      )}
+      <div className="mt-4">
+        <Editor
+          height="50vh"
+          defaultLanguage="python"
+          defaultValue={input}
+          onChange={handleEditorChange}
+          theme="vs-dark"
+          options={{
+            lineNumbers: 'on',
+            roundedSelection: false,
+            scrollBeyondLastLine: false,
+            readOnly: isRunning,
           }}
         />
-      </form>
-      <p>Output</p>
-      <pre>
-        <code>{stdout}</code>
+      </div>
+      <button
+        className="w-full mt-2 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={isLoading || isRunning}
+        onClick={() => runPython(input)}
+      >
+        {!isRunning ? 'Run' : 'Running...'}
+      </button>
+      <p className="mt-4 text-yellow-500">Output</p>
+      <pre className="p-2 bg-gray-700 rounded-md overflow-x-auto">
+        <code className="break-all">{stdout}</code>
       </pre>
-      <p>Error</p>
-      <pre>
-        <code>{stderr}</code>
+      <p className="mt-4 text-red-500">Error</p>
+      <pre className="p-2 bg-gray-700 rounded-md overflow-x-auto">
+        <code className="break-all">{stderr}</code>
       </pre>
-    </>
+    </div>
   );
 }
 

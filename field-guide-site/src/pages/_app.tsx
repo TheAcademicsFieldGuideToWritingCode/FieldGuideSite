@@ -18,5 +18,5 @@ useEffect(() => {
     )
     .catch((err) => console.log('Service Worker registration failed: ', err))
 }, [])
-  return <Component {...pageProps} />
+  return <Component className="bg-gray-100" {...pageProps} />
 }
