@@ -1,6 +1,7 @@
 import Alert from './alert'
-import Footer from './footer'
+import Footer from '~/components/ui/footer'
 import Meta from './meta'
+import NavMenu from '~/components/ui/nav-menu'
 
 type Props = {
   preview?: boolean
@@ -11,6 +12,7 @@ const Layout = ({ preview, children }: Props) => {
   return (
     <>
       <Meta />
+        <NavMenu/>
       <div className="min-h-screen">
         <main>{children}</main>
       </div>

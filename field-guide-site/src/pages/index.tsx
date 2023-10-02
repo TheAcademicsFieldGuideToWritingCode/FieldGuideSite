@@ -21,6 +21,9 @@ import {
     CardTitle,
 } from "~/components/ui/card"
 
+import NavMenu from '~/components/ui/nav-menu'
+import Footer from '~/components/ui/footer'
+
 type Props = {
     allPosts: Post[]
     allCourses: Post[]
@@ -39,8 +42,8 @@ print(data)
 
 
 const packages = {
-  official: [],
-  micropip: ['python-cowsay', 'requests'],
+    official: [],
+    micropip: ['python-cowsay', 'requests'],
 }
 
 export default function Index({ allPosts, allCourses }: Props) {
@@ -50,62 +53,57 @@ export default function Index({ allPosts, allCourses }: Props) {
     const moreCourses = allCourses.slice(1)
     return (
         <>
-            <div className="bg-cyan-900 p-12 mb-16">
+            <Layout>
+            <div style={{ backgroundImage: `url('/assets/computer.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center center' }} className=" p-3 lg:p-12 mb-16">
                 <div className="flex flex-col lg:flex-row">
 
-                    <div className="lg:w-1/2 p-12">
-                        <Card className="bg-cyan-900 border-none text-slate-50">
+                    <div className="lg:w-1/2 p-3 lg:p-12">
+                        <Card className="bg-slate-800/80 drop-shadow-md border-none text-white">
                             <CardHeader className="">
-                                <CardTitle>Welcome to The Academic's Field Guide to Writing Code</CardTitle>
-                                <CardDescription className="text-slate-50">Interactive Coding Tutorials for Social Scientists</CardDescription>
+                                <CardTitle className="text-4xl font-bold">The Academic's Field Guide to Code</CardTitle>
+                                <CardDescription className="text-lg text-slate-300">Coding Tutorials for Social and Behavioural Scientists</CardDescription>
                             </CardHeader>
-                            <CardContent className=" p-8 text-slate-50">
+                            <CardContent className="lg:p-8 text-slate-200">
                                 <div className="mb-8">
-                                    <h2 className="text-5xl" >Application-First</h2>
-                                    <h2 className="text-5xl" >Interactive</h2>
-                                    <h2 className="text-5xl" >Free Open Source Code</h2>
+                                    <h2 className="text-5xl font-semibold">Application-First</h2>
+                                    <h2 className="text-5xl font-semibold">Interactive</h2>
+                                    <h2 className="text-5xl font-semibold">Open Source</h2>
                                 </div>
                                 <p className="mb-4">
-                                    Exactly what you need to know, right when you need it.
-                                    Programming guides specially designed for individuals in <span className="font-semibold">Psychology</span>, <span className="font-semibold">Sociology</span>, and other Social Sciences.
+                                    Tailored guides for <span className="font-semibold ">Psychology</span> and <span className="font-semibold ">Sociology</span> students and professionals, providing essential programming skills for research.
                                 </p>
                                 <p className="mb-4">
-                                    For some, programming is a passion, for others, it's a tool.
-                                    There's a wealth of programming tutorials online, but most are designed to help learners become professional or hobby programmers.
-                                    The Field Guide is designed for those whose interests lie elsewhere but want to build a computational tool-kit for their work and research.
+                                    The Field Guide is crafted for students and researchers looking to build a <span className="font-semibold "> computational toolkit </span> without the need to become professional programmers. That's why we've made all our code freely available to edit and use on <span>
+
+ <Link href="https://github.com/orgs/TheAcademicsFieldGuideToWritingCode/repositories" className="font-semibold">our github. </Link></span>
                                 </p>
                                 <p>
-                                    Our tutorials, examples, and practice problems are all crafted with an <span className="font-semibold">Application-First</span> mentality, meaning you see right away how each concept, and tool is applicable to your work.
-                                </p>
-                                <p>
-                                    Most importantly, each guide comes with free and open source code, as well as interactive examples you can run straight from your browser. Check it out.
+                                    With an <span className="font-semibold">Application-First</span> approach, immediately apply concepts and tools to your work through our interactive examples and free open-source code.
                                 </p>
                             </CardContent>
-                            <CardFooter className=" p-8">
-                                <Button className="bg-teal-600">
-                                    <Link href="/signup">
-                                        Sign Up for Free
-                                    </Link>
+                            <CardFooter className="p-8">
+                                <Button className="bg-cyan-600 hover:bg-cyan-700">
+                                    <Link href="/signup" className="text-white">Sign Up Free</Link>
                                 </Button>
                             </CardFooter>
                         </Card>
                     </div>
                     <div className="lg:w-1/2 flex justify-center items-center mb-4 sm:mb-0">
                         <PythonProvider packages={packages}>
-                        <CodeBlock defaultCode={exampleCode}/>
-</PythonProvider>
+                            <CodeBlock defaultCode={exampleCode} />
+                        </PythonProvider>
                     </div>
 
                 </div>
             </div>
-            <Layout>
                 <Head>
                     <title>The Academic's Field Guide to Writing Code</title>
                 </Head>
 
                 <Container>
-                    <div className=" drop-shadow-lg border-t-8 border-solid border-teal-500 bg-white p-12 rounded-lg mb-8">
-                        <h2 className="text-slate-900 text-6xl font-bold mb-16">The "I just need a little code" Course</h2>
+                    <div className="drop-shadow-lg border-t-8 border-solid border-cyan-400 bg-slate-700 p-3 lg:p-12 rounded-lg mb-8 text-white">
+                        <h2 className="text-slate-100 text-5xl font-bold ">The Field Guide Foundations Course</h2>
+                        <h4 className="text-slate-300 text-2xl  mb-12">Our beginner python to data collection, analysis, and applications course.</h4>
                         {heroCourse && (
                             <HeroPost
                                 title={heroCourse.title}
@@ -114,17 +112,18 @@ export default function Index({ allPosts, allCourses }: Props) {
                                 author={heroCourse.author}
                                 slug={heroCourse.slug}
                                 excerpt={heroCourse.excerpt}
-                                isCourse={true} 
+                                isCourse={true}
                             />
                         )}
                     </div>
 
-                    <div className="border-solid bg-white p-12 rounded-lg mb-8 drop-shadow-md">
-                        {moreCourses.length > 0 && <MoreStories posts={moreCourses} />}
+                    <div className="bg-slate-700 p-3 lg:p-12 rounded-lg mb-8 text-white">
+                        {moreCourses.length > 0 && <MoreStories title="Other Course Content" posts={moreCourses} />}
                     </div>
 
-                    <div className="drop-shadow-lg border-t-8 border-solid border-red-400 bg-white p-12 rounded-lg mb-8">
-                        <h2 className="text-7xl font-bold mb-8">Blog Posts</h2>
+                    <div className="drop-shadow-lg border-t-8 border-solid border-teal-400 bg-slate-700 p-3 lg:p-12 rounded-lg mb-8 text-white">
+                        <h2 className="text-slate-100 text-5xl font-bold mb-8">Articles</h2>
+                        <h4 className="text-slate-300 text-2xl  mb-12">An assortment of tutorials and opinion pieces that don't fit into any one course</h4>
                         {heroPost && (
                             <HeroPost
                                 title={heroPost.title}
@@ -137,8 +136,8 @@ export default function Index({ allPosts, allCourses }: Props) {
                         )}
                     </div>
 
-                    <div className="border-solid bg-white p-12 rounded-lg mb-8 drop-shadow-md">
-                        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                    <div className="bg-slate-700 p-3 lg:p-12 rounded-lg mb-8 drop-shadow-md text-white">
+                        {morePosts.length > 0 && <MoreStories title="More Articles" posts={morePosts} />}
                     </div>
                 </Container>
             </Layout>

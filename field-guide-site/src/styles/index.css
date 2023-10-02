@@ -85,35 +85,16 @@ body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption {
   padding: 0;
 }
 
-
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 10px;
+body {
+    background-color: #1e293b;
 }
 
-h1 {
-  font-size: 2.5em;
-}
 
-h2 {
-  font-size: 2em;
-}
 
-h3 {
-  font-size: 1.5em;
-}
-
-/* Paragraphs */
-p {
-  font-size: 1em;
-  margin-bottom: 15px;
-  text-align: justify;
-}
 
 /* Links */
 a {
-  color: #007bff;
+  color: #a5f3fc;
   text-decoration: none;
 }
 
@@ -121,37 +102,38 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Lists */
-ul, ol {
-  margin-bottom: 15px;
-  padding-left: 20px;
-}
-
-/* Images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 10px 0;
-}
-
-/* Figure and Figcaption */
-figure {
-  margin: 15px 0;
-}
-
-figcaption {
-  font-style: italic;
-  color: #666;
-}
-
-/* Footer */
-footer {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 0.8em;
-  color: #666;
-}
 .prose {
     max-width: 100%;
+    color: #D1D5DB; /* This corresponds to Tailwind's gray-400 */
+}
+
+/* Headings */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  margin-bottom: 10px;
+  color: #F3F4F6; /* This corresponds to Tailwind's gray-300 */
+}
+
+.prose h1 {
+  font-size: 2.5em;
+}
+
+.prose h2 {
+  font-size: 2em;
+}
+
+.prose h3 {
+  font-size: 1.5em;
+}
+
+/* Paragraphs */
+.prose p {
+  font-size: 1em;
+  margin-bottom: 15px;
+  text-align: justify;
+  color: #E5E7EB; /* This corresponds to Tailwind's gray-400 */
+}
+
+.prose a {
+    color: #F3F4F6;
+    text-decoration: none;
 }
