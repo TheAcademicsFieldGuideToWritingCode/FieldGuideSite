@@ -10,6 +10,7 @@ export const env = createEnv({
     DATABASE_URL: z
       .string()
       .url()
+      .optional()
       .refine(
         (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
         "You forgot to change the default URL"
@@ -19,7 +20,7 @@ export const env = createEnv({
       .default("development"),
     NEXTAUTH_SECRET:
       process.env.NODE_ENV === "production"
-        ? z.string().min(1)
+        ? z.string().min(1).optional()
         : z.string().min(1).optional(),
     NEXTAUTH_URL: z.preprocess(
       // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
@@ -29,8 +30,8 @@ export const env = createEnv({
       process.env.VERCEL ? z.string().min(1) : z.string().url()
     ),
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
-    DISCORD_CLIENT_ID: z.string(),
-    DISCORD_CLIENT_SECRET: z.string(),
+    DISCORD_CLIENT_ID: z.string().optional(),
+    DISCORD_CLIENT_SECRET: z.string().optional(),
   },
 
   /**
