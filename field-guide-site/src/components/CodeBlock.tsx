@@ -5,14 +5,14 @@ import Editor from '@monaco-editor/react';
 
 
 const packages = {
-  official: [],
+  official: ['asciitree'],
   micropip: ['orjson', 'python-cowsay', 'requests'],
 }
 
 
-function CodeBlock({ defaultCode = '' }: CodeBlockProps) {
+function CodeBlock({ defaultCode = '' }) {
   const [input, setInput] = useState(defaultCode);
-  const { runPython, stdout, stderr, isLoading, isRunning } = usePython(packages);
+  const { runPython, stdout, stderr, isLoading, isRunning } = usePython();
 
 
 
@@ -20,7 +20,7 @@ function CodeBlock({ defaultCode = '' }: CodeBlockProps) {
     setInput(defaultCode);
   }, [defaultCode]);
 
-  const handleEditorChange = (value, event) => {
+  const handleEditorChange = (value:any , event:any) => {
     setInput(value);
   };
 

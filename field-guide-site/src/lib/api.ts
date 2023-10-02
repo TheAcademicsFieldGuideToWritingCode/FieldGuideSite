@@ -90,8 +90,12 @@ export function getAllPosts(fields: string[] = []) {
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
     // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-  return posts
+    .sort((post1, post2) => {
+      if (!post1?.date) return 1; // or return -1 depending on how you want to handle undefined
+      if (!post2?.date) return -1; // or return 1 depending on how you want to handle undefined
+      return post1.date > post2.date ? -1 : 1;
+    })
+  return posts;
 }
 
 export function getAllCourses(fields: string[] = []) {
@@ -99,8 +103,12 @@ export function getAllCourses(fields: string[] = []) {
   const posts = slugs
     .map((slug) => getCoursesBySlug(slug, fields))
     // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-  return posts
+    .sort((post1, post2) => {
+      if (!post1?.date) return 1; // or return -1 depending on how you want to handle undefined
+      if (!post2?.date) return -1; // or return 1 depending on how you want to handle undefined
+      return post1.date > post2.date ? -1 : 1;
+    })
+  return posts;
 }
 
 

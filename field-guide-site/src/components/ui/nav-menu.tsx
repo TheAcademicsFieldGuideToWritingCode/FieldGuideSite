@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Tool Kit', href: 'https://github.com/orgs/TheAcademicsFieldGuideToWritingCode/repositories', current: false },
 ]
 
-function classNames(...classes) {
+function classNames(...classes:any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
