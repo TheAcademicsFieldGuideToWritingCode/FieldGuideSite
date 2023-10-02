@@ -17,7 +17,7 @@ export default function Index({ allPosts }: Props) {
     return (
             <Layout>
                 <Container>
-                    <div className="mt-8"/>
+                    <div className="mt-16"/>
                     <div className="drop-shadow-lg border-t-8 border-solid border-cyan-400 bg-slate-700 p-3 lg:p-12 rounded-lg mb-8 text-white">
                         <h2 className="text-slate-100 text-5xl font-bold mb-12 ">Our Latest Article</h2>
                         {heroPost && (

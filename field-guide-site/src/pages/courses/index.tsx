@@ -17,6 +17,7 @@ export default function CourseHomePage({ allCourses }: Props) {
 
     return (
             <Layout>
+                <div className="mt-16"/>
                 <Container>
                     <div className="drop-shadow-lg border-t-8 border-solid border-cyan-400 bg-slate-700 p-3 lg:p-12 rounded-lg mb-8 text-white">
                         <h2 className="text-slate-100 text-5xl font-bold ">The Field Guide Foundations Course</h2>
