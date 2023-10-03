@@ -21,7 +21,7 @@ import {
 
 
 // const background_img = require("/assets/computer.jpg");
-import background_img from '/public/assets/computer.jpg'
+import background_img from '/assets/computer.jpg'
 
 
 type Props = {
