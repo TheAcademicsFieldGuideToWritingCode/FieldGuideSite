@@ -1,8 +1,6 @@
 import Container from '../components/container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
-import Header from '../components/header'
 import Layout from '../components/layout'
 import { getAllPosts, getAllCourses } from '../lib/api'
 import Head from 'next/head'
@@ -21,8 +19,10 @@ import {
     CardTitle,
 } from "~/components/ui/card"
 
-import NavMenu from '~/components/ui/nav-menu'
-import Footer from '~/components/ui/footer'
+
+// const background_img = require("/assets/computer.jpg");
+import background_img from '../../public/assets/computer.jpg'
+
 
 type Props = {
     allPosts: Post[]
@@ -54,7 +54,7 @@ export default function Index({ allPosts, allCourses }: Props) {
     return (
         <>
             <Layout>
-            <div style={{ backgroundImage: `url('/assets/computer.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center center' }} className=" p-3 lg:p-12 mb-16">
+            <div style={{ backgroundImage: `url(${background_img.src})`, backgroundSize: 'cover', backgroundPosition: 'center center' }} className=" p-3 lg:p-12 mb-16">
                 <div className="flex flex-col lg:flex-row">
 
                     <div className="lg:w-1/2 p-3 lg:p-12">
