@@ -9,7 +9,6 @@ import Course from '~/interfaces/post'
 
 type Props = {
     allCourses: Course[]
-    allCourses: Course[]
 }
 export default function CourseHomePage({ allCourses }: Props) {
     const heroCourse = allCourses[0]
