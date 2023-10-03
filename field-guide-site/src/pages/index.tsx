@@ -20,8 +20,8 @@ import {
 } from "~/components/ui/card"
 
 
-// const background_img = require("/assets/computer.jpg");
-import background_img from '/assets/computer.jpg'
+const background_img = require("/assets/computer.jpg");
+// import background_img from '/assets/computer.jpg'
 
 
 type Props = {
