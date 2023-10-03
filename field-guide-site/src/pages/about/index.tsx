@@ -17,14 +17,14 @@ const team = [
         name: 'Nathan Laundry',
         role: 'Founder, Lead Writer',
         imageUrl:
-            '/assets/Nathan.jpg',
+            '/assets/blog/authors/Nathan.jpg',
         location: 'Toronto, Canada',
     },
     {
         name: 'Chris Prebble',
         role: 'Editor, Content and Audience Manager',
         imageUrl:
-            '/assets/Chris.jpg',
+            '/assets/blog/authors/Chris.jpg',
         location: 'Toronto, Canada',
     },
     {

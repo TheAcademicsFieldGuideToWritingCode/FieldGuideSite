@@ -54,7 +54,7 @@ export default function Index({ allPosts, allCourses }: Props) {
     return (
         <>
             <Layout>
-            <div style={{ backgroundImage: `url('/assets/computer.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center center' }} className=" p-3 lg:p-12 mb-16">
+            <div style={{ backgroundImage: `url('/assets/blog/preview/computer.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center center' }} className=" p-3 lg:p-12 mb-16">
                 <div className="flex flex-col lg:flex-row">
 
                     <div className="lg:w-1/2 p-3 lg:p-12">
