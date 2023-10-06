@@ -10,7 +10,6 @@ import withTM from 'next-transpile-modules';
 import rehypePrettyCode from 'rehype-pretty-code';
 // const fs = require('fs');
 
-/** @type {import('rehype-pretty-code').Options} */
 const options = {
   theme: 'nord',
   // See Options section below.
