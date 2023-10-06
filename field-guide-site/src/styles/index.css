@@ -107,6 +107,32 @@ a:hover {
     color: #D1D5DB; /* This corresponds to Tailwind's gray-400 */
 }
 
+.prose strong {
+color: #FFFFFF;
+}
+
+.prose code {
+    color: #E5E7EB; /* Light Gray */
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace; /* You can use any monospaced font */
+    font-size: 0.9em;
+}
+
+.prose a {
+  color: #a5f3fc !important;
+  text-decoration: none;
+}
+
+.prose li {
+    color: white;
+}
+
+.prose a:hover {
+  color: #85E3FF !important;
+  text-decoration: underline;
+}
+
 /* Headings */
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
   margin-bottom: 10px;
@@ -114,6 +140,7 @@ a:hover {
 }
 
 .prose h1 {
+  padding-top: 2em;
   font-size: 2.5em;
 }
 

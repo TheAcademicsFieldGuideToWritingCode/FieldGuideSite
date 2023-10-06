@@ -1,0 +1,89 @@
+## 👋 Hey Friends,
+
+Getting into a new field of research requires reading dozens of landmark and seminal papers to understand that field’s foundations. This manual process often involves:
+
+- Searching keywords on Google Scholar
+- Finding papers
+- Polling friends, advisors, colleagues, and other experts for recommendations
+
+It's an ad-hoc process that can take months.
+
+Conducting a proper, methodical literature review is even more time-intensive but crucial. It involves establishing a method, identifying the correct keywords, and finding the right databases.
+
+# Introducing Scholar Scraper: A Tool in The Academic’s Toolkit
+
+I’ve been pondering how to utilize **ChatGPT** to assist researchers in summarizing a field’s most crucial papers quickly and digestibly. Introducing the first tool in **The Academic’s Toolkit**: **Scholar Scraper**!
+[All code for Scholar Scraper available here](https://github.com/TheAcademicsFieldGuideToWritingCode/ScholarScraper)
+
+## What is Scholar Scraper?
+
+*Scholar Scraper* is a Python package designed to search and summarize the most cited articles for a given keyword. It leverages the **Elsevier Scopus API** and **GPT-4** to produce a CSV of top articles with the following data:
+
+- **Title**: Paper’s title
+- **Authors**: Paper’s authors
+- **Publication Name**: Where the paper was published
+- **Publication Date**: Paper’s publication date
+- **DOI**: Paper’s DOI
+- **Summary**: GPT-4 generated summary
+- **Hypotheses**: GPT-4 interpretation of hypotheses
+- **Methods**: GPT-4 interpretation of methods
+- **Findings**: GPT-4 interpretation of findings
+
+Excited? Let’s dive into how to use it!
+
+## Installation Guide
+
+### Step-by-Step Installation
+
+1. Install Python if not already present on your system.
+2. Install the `academics_scholar_scraper` package using pip.
+3. Set up your Elsevier and OpenAI API keys as environment variables.
+
+### Detailed Installation Steps
+
+#### Installing the Package
+
+- Ensure Python is installed: run `python --version` in terminal.
+- If not, [download Python](https://www.python.org/downloads/).
+- Install the package via terminal: `pip install academics_scholar_scraper`.
+
+#### Setting Up Elsevier API Key
+
+1. Obtain an API key from [Elsevier Developer Portal](https://dev.elsevier.com/).
+2. Generate a new API key for the SCOPUS product.
+3. Set the `ELSEVIER_API_KEY` environment variable: `export ELSEVIER_API_KEY=your_elsevier_api_key`.
+4. Verify the environment variable: `echo $ELSEVIER_API_KEY`.
+
+#### Setting Up OpenAI API Key
+
+1. Obtain an API key from [OpenAI](https://beta.openai.com/signup/).
+2. Set the `OPENAI_API_KEY` environment variable: `export OPENAI_API_KEY=your_openai_api_key`.
+3. Verify the environment variable: `echo $OPENAI_API_KEY`.
+
+## Usage Guide
+
+### Running the Script
+
+Use the following command-line arguments:
+
+- `keyword`: Search keyword for articles.
+- `-n, --num_papers`: Number of papers to retrieve (default: 10).
+- `-o, --output`: Output CSV file name (default: papers.csv).
+- `-s, --subject`: Subject area (optional).
+
+### Example Command
+
+```shell
+academics_scholar_scraper "machine learning" -n 10 -o results.csv -s COMP
+```
+
+### Disclaimer
+Generated summaries might not always be perfectly accurate. They should be starting points for further investigation. Always refer to original articles for accurate information.
+
+## Conclusion
+ScholarScraper is a powerful tool for summarizing scholarly articles. Try it out and enhance your research process! If there's interest in a YouTube tutorial or a follow-up blog post, let us know!
+
+Cheers,  
+Nathan Laundry  
+
+[✉️ Join my Email Newsletter](https://guidingquestions.com)

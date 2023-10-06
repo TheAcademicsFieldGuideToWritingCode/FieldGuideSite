@@ -1,0 +1,177 @@
+> Python project management used to be a nightmare, now it’s poetry 😉
+
+
+👋 Hey Friends,
+
+As a C programmer by training (the University of Guelph loves to torture its students by teaching them ANSI C in first year), I’m used to arduous project management processes.
+
+The word `Makefile` still sends shivers down my spine.
+
+## Python vs C: A Quick Comparison
+When I started developing in Python for research projects, I was delighted by the ease with which ideas became code. What in C is 100 lines of painstaking work, is often a matter of “import package … package.run()” in Python.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int count = 0;
+    double sum = 0.0;
+    int value;
+    
+    while (scanf("%d", &value) == 1) {
+        count++;
+        sum += value;
+    }
+    
+    if (count > 0) {
+        double average = sum / count;
+        printf("Average: %lf\n", average);
+    } else {
+        printf("No values entered.\n");
+    }
+    
+    return 0;
+}
+```
+
+```python
+numbers = [int(x) for x in input().split() if x]
+print("Average:", sum(numbers) / len(numbers)) if numbers else print("No values entered.")
+```
+
+## The Struggle with Python Package Management
+Alas, for all its ease, Python’s package management systems were initially challenging.
+
+### Traditional Python Tools
+When turning a Python script into a package, you would need:
+
+- setuptools
+- pyenv
+- virtualenv
+- Twine
+- Manually created `requirements.txt` and `setup.py` files
+
+### Enter Poetry!
+With Poetry, Python package setup and management became significantly smoother.
+
+## Project Setup Comparison: Traditional vs Poetry
+
+### Initializing Project Structure
+
+#### Traditional Python Tooling
+Requirements: `setup.py`, setuptools, `requirements.txt`.
+
+```bash
+mkdir mytweet
+touch README.md requirements.txt setup.py
+# Then create the rest of the files and directories manually
+```
+
+#### With Poetry
+One command does it all:
+
+```bash
+poetry new mytweet
+```
+
+### Setting Initial Dependencies
+
+#### Traditional Python Tooling
+Add dependencies manually to `setup.py` and `requirements.txt`.
+
+#### With Poetry
+Just one command:
+
+```bash
+poetry add tweepy
+```
+
+## During Development
+
+### Managing Virtual Environments
+
+#### Traditional Python Tooling
+Requires pyenv + pyenv-virtualenv, then several commands to set up and activate the virtual environment.
+
+```bash
+pip install pyenv pyenv-virtualenv
+pyenv virtualenv 3.9.7 mytweet-env
+pyenv activate mytweet-env
+pip install -r requirements.txt
+```
+
+#### With Poetry
+Again, simpler with Poetry:
+
+```bash
+poetry install
+poetry shell
+```
+
+### Testing Using pytest
+
+#### Traditional Python Tooling
+Manually add `pytest` to `requirements.txt` and update `setup.py`.
+
+```bash
+pytest
+```
+
+#### With Poetry
+Simplified process:
+
+```bash
+poetry add --dev pytest
+poetry run pytest
+```
+
+## Deployment: Build and Publish
+
+### Build
+
+#### Traditional Tooling
+Build source and binary distributions manually.
+
+```bash
+python setup.py sdist bdist_wheel
+```
+
+#### With Poetry
+Simplified command:
+
+```bash
+poetry build
+```
+
+### Publish
+
+#### Traditional Tooling
+Use Twine for distribution, requiring more manual steps.
+
+```bash
+pip install twine
+twine upload dist/*
+```
+
+#### With Poetry
+Simpler with Poetry:
+
+```bash
+poetry publish
+```
+
+## Summing Up
+
+### Traditional Python Tooling
+- Multiple manual steps for initialization, development, and deployment.
+
+### With Poetry
+- Simplified commands for each stage of project development and deployment.
+
+## Conclusion
+Poetry is to setuptools, twine, and the rest, as Python is to C — an absolute game changer.
+
+Cheers,  
+Nathan Laundry  
+[Intelligent Adaptive Interventions lab at UofT](https://www.josephjaywilliams.com)  
+[✉️ Join my Email Newsletter #GuidingQuestions here](https://guidingquestions.com)

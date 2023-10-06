@@ -35,7 +35,7 @@ const HeroPost = ({
                         {title}
                     </Link>
                 </h3>
-                <div className="text-lg">
+                <div className="text-lg text-slate-400">
                     <DateFormatter dateString={date} />
                 </div>
             </div>

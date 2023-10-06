@@ -1,0 +1,118 @@
+## Introduction
+This is Part 2 of **Using APIs in Python For Data Collection**. In this tutorial, we will explore the usage of the PRAW package to scrape Reddit data, focusing on two specific use-cases beneficial for social sciences and Human Computer Interaction (HCI) research: 
+
+1. **Sentiment Analysis**: A technique for determining the positivity or negativity of language within Reddit posts and comments.
+2. **Tracking Specific Topics**: Using keywords to analyze how different communities discuss specific topics, like the discussion of mental health within the [covid19_support](https://www.reddit.com/r/covid19_support/) subreddit.
+
+## Why Reddit?
+Reddit is a fertile ground for researchers due to the vast amount of posts, comments, and user interactions available. It allows for the study of various online communities that form and interact on the platform.
+
+## Prerequisites
+If you are unfamiliar with APIs, consider reading our previous article: [Using APIs in Python for Data Collection (Part 1)](https://medium.com/link-to-part-1).
+
+## Basic Setup with Python PRAW
+Before diving into the data collection process, let's set up our environment and get familiar with PRAW.
+
+### Setting Up the Environment
+Ensure Python is installed on your system. You can download Python [here](https://www.python.org/downloads/). Next, install the PRAW package using pip:
+
+```bash
+pip install praw
+```
+
+### Creating a Reddit App
+You'll need to create a Reddit App to obtain the necessary credentials. Follow these steps:
+
+1. Log into your Reddit account.
+2. Navigate to [App Preferences](https://www.reddit.com/prefs/apps).
+3. Create a new app under the “Developed Applications” section.
+4. Fill out the form with a name, selecting "script" as the App type, and using “http://localhost:8080" as the redirect URI. Leave other fields as they are or optional.
+5. After creation, note down the “client ID” and “client secret”.
+
+### Collecting Reddit Data with PRAW
+With the Reddit App ready, initialize the Reddit instance with PRAW:
+
+```python
+import praw
+
+client_id = "your_client_id"
+client_secret = "your_client_secret"
+user_agent = "your_user_agent"
+reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
+```
+
+## Data Collection Examples
+Here, we demonstrate how to collect top posts from a subreddit and their comments:
+
+```python
+subreddit = reddit.subreddit("AskReddit")
+top_posts = subreddit.top(limit=10)
+
+for post in top_posts:
+    print(post.title)
+    for comment in post.comments[:10]:
+        print(comment.body)
+```
+
+## Advanced Data Collection Techniques
+Now that you know the basics, let’s move to advanced techniques like sentiment analysis and keyword identification.
+
+### Sentiment Analysis
+Sentiment Analysis is beneficial for understanding the general mood or feeling behind a piece of text. Below, we outline the process to set up your environment for sentiment analysis:
+
+```bash
+pip install textblob
+pip install nltk
+```
+
+Then, download the necessary data for sentiment analysis:
+
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+```
+
+### Keyword Identification
+For tracking discussions about specific topics, you'd typically search for keywords in comments. Below is a Python snippet demonstrating how you can collect data from different subreddits and track discussions based on specific keywords:
+
+```python
+import praw
+import csv
+from textblob import TextBlob
+
+reddit = praw.Reddit(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET', user_agent='YOUR_USER_AGENT')
+
+subreddits = ["conservative", "liberal"]
+keywords = ["mental health", "depression", "anxiety"]
+data = []
+
+for subreddit_name in subreddits:
+    subreddit = reddit.subreddit(subreddit_name)
+    top_posts = subreddit.top(limit=100)
+    for post in top_posts:
+        post_title = post.title
+        for comment in post.comments[:10]:
+            comment_body = comment.body
+            if any(keyword in comment_body.lower() for keyword in keywords):
+                upvotes = comment.score
+                sentiment_score = TextBlob(comment_body).sentiment.polarity
+                data_dict = {
+                    "Subreddit": subreddit_name,
+                    "Post Title": post_title,
+                    "Comment Body": comment_body,
+                    "Upvotes": upvotes,
+                    "Sentiment Score": sentiment_score
+                }
+                data.append(data_dict)
+```
+
+## Conclusion
+With the ability to scrape and analyze Reddit data, a myriad of research possibilities open up. Whether it's studying public opinion, examining online engagement, or identifying discussion patterns about mental health, the data you collect and analyze can provide valuable insights.
+
+*Cheers,*  
+**Nathan Laundry**  
+Edited by: **Hyuna Cho**
+
+[Intelligent Adaptive Interventions lab at UofT](https://www.josephjaywilliams.com)  
+[✉️ Join my Email Newsletter #GuidingQuestions here](https://guidingquestions.com)

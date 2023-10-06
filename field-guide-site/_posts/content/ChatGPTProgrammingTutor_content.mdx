@@ -1,0 +1,222 @@
+# ChatGPT is a Great Coding Tutor — If you ask it the Right Questions
+
+I love teaching.
+
+As soon as I had the chance, I became a teaching assistant for computer science courses at the University of Guelph. I got to teach labs introductory programming in C, object oriented in Java, and even a little UI design.
+
+One of the most interesting results of teaching for so long is that you also build a better understanding of how you learn.
+
+See, I get a real kick out of trying to find the precise wording, the right metaphor, the perfect alignment of explanation and student. If I explain something once and a student doesn’t get it it’s not because they’re stupid, it’s because I haven’t connected with them the right way yet. That’s a problem we — the student and I — can solve together.
+
+But I can also turn this inward.
+
+Let’s say I’m learning a new syntax in python — list comprehensions for example— and I don’t understand one explanation I find online, I can approach that misunderstanding the same way I’d approach it with one of my own students. I’ll search for a new explanation, reformulate the question, and find different examples. This is extremely effective, but a slow process with google, books, and trial and error practice.
+
+All of this is made so much faster with ChatGPT as a tutor.
+
+With ChatGPT, the bot and I can co-create new explanations. We can iterate — do I want an explanation in the form of a metaphor, no? How about concrete code examples? That didn’t work. Let’s try an abstract code example.
+
+Together ChatGPT and I explore how I learn through iteration — co-creating the most effective learning environment for me.
+
+## Teaching ChatGPT to be your Personal Coding Tutor
+
+I like to learn by doing.
+
+I find I’m much more driven to learn programming when I have a project I’m excited about. Without that context, strings of syntax are meaningless to me.
+
+So we’re going to start with a project — using the twitter API via tweepy to collect tweets by Obama — and then as we uncover things I don’t understand, we’ll dive into some techniques I use to get chatGPT to explain it to me.
+
+```python
+# First prompt to ChatGPT
+we’re going to build a python script using tweepy to collect tweets written by Obama. Help me code that
+```
+
+It spat this out
+
+```python
+import tweepy
+
+# your Twitter API credentials
+consumer_key = "YOUR_CONSUMER_KEY"
+consumer_secret = "YOUR_CONSUMER_SECRET"
+access_token = "YOUR_ACCESS_TOKEN"
+access_token_secret = "YOUR_ACCESS_TOKEN_SECRET"
+
+# authorize tweepy to access the Twitter API
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+
+# create the API object
+api = tweepy.API(auth)
+
+# the user whose tweets we want to collect
+username = "BarackObama"
+
+# initialize a list to hold all the tweets
+all_tweets = []
+
+# make initial request for most recent tweets (200 is the maximum allowed count)
+new_tweets = api.user_timeline(screen_name=username, count=200)
+
+# save most recent tweets
+all_tweets.extend(new_tweets)
+
+# save the id of the oldest tweet less one
+oldest = all_tweets[-1].id - 1
+
+# keep grabbing tweets until there are no tweets left to grab
+while len(new_tweets) > 0:
+    print(f"getting tweets before {oldest}")
+    
+    # all subsequent requests use the max_id parameter to prevent duplicates
+    new_tweets = api.user_timeline(screen_name=username, count=200, max_id=oldest)
+    
+    # save most recent tweets
+    all_tweets.extend(new_tweets)
+    
+    # update the id of the oldest tweet less one
+    oldest = all_tweets[-1].id - 1
+    
+    print(f"Number of tweets downloaded so far: {len(all_tweets)}")
+
+# transform the tweets into a more easily manipulable format
+outtweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in all_tweets]
+
+# save the tweets to a CSV file
+import csv
+with open(f'{username}_tweets.csv', 'w', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(["id","created_at","text"])
+    writer.writerows(outtweets)
+```
+
+Now, as my long term readers know, I’m a C programmer at heart. So, lines like this are gibberish to me.
+
+```python
+# transform the tweets into a more easily manipulable format
+outtweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in all_tweets]
+```
+
+Let’s get chatGPT to explain this in 3 different ways.
+
+### Explain Plainly
+
+The first thing I want to do is try to tease apart, in the broadest sense, what this code does. Not how it does it, but what the point of the code is — its purpose. To do this, I ask ChatGPT to explain the code in plain English.
+
+**The Prompt**
+
+```plaintext
+Can you explain what this code does in plain English? Use a metaphor or something to help me understand what it’s doing. I want to understand the purpose of this code right now, we’ll get to the details later.
+```
+
+```python
+outtweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in all_tweets]
+```
+
+ChatGPT confidently explains it to me
+
+> Certainly! Imagine you have a basket of apples (all_tweets) and each apple (tweet) has a unique ID, a timestamp of when it was picked, and a message written on its skin. The purpose of this code is to create a new collection (outtweets) of apples, where each apple’s information is neatly organized on a small card.
+> 
+> In other words, this code takes a list of tweets (all_tweets) and creates a new list (outtweets) containing the essential information of each tweet, such as its ID, creation time, and text. The new list consists of smaller lists, each holding the information of a single tweet.
+
+### Explain by Translation to pseudocode or a Familiar Language
+
+Okay, so we know the purpose of this list comprehension, now let’s start figuring out how it achieves its purpose.
+
+Here I’m going to ask ChatGPT to explain the code again by writing it out in pseudo-code, and comparing it piece by piece.
+
+Here’s the prompt:
+
+```plaintext
+can you write some pseudo-code that does the same thing as the following python code? Comment the pseudo-code extensively.
+```
+
+```python
+outtweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in all_tweets]
+```
+
+ChatGPT gives me an extensive explanation!
+
+```plaintext
+outtweets = []   // create an empty list to hold the transformed tweets
+for each tweet in all_tweets:   // loop through each tweet in the list of tweets
+    outtweet = []   // create an empty list to hold the transformed tweet
+    outtweet.append(tweet.id_str)   // append the tweet's ID to the outtweet list
+    outtweet.append(tweet.created_at)   // append the tweet's creation date and time to the outtweet list
+    outtweet.append(tweet.text)   // append the tweet's text to the outtweet list
+    outtweets.append(outtweet)   // append the outtweet list to the outtweets list
+```
+
+### An Abstract Explanation
+
+To generalize the understanding, we need to know each component of this code and its purpose in the overall functionality.
+
+The prompt:
+
+```plaintext
+For this code:
+outtweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in all_tweets]
+give me the official abstracted names (like those that would be referenced in a textbook about the Python interpreter) of the components one by one, then recreate the code using the abstracted names.
+```
+
+And this is what ChatGPT gave me:
+
+> This code is a list comprehension that constructs a list called outtweets. The components involved in this code are:
+> 
+> - List Comprehension: A compact way to create a list using a single line of code.
+> - Loop Variable: A variable used to iterate through the elements of an iterable (in this case, tweet).
+> - Iterable: The collection that the loop iterates through (in this case, all_tweets).
+> - Expression: The output expression that defines the structure of the elements in the new list (in this case, [tweet.id_str, tweet.created_at, tweet.text]).
+
+### ChatGPT, Give me Use Cases
+
+Now that we have a general understanding, let's get examples that are relevant to us.
+
+The prompt:
+
+```plaintext
+Give me 3 use cases for list comprehensions. Embed them in a real project like collecting data from reddit or twitter to do some sort of analysis. Break it down in terms of
+- purpose for using the list comprehension
+- what the new list is for
+- how I’m using an expression to transform items in the old list
+- code example:
+```
+
+Here’s what ChatGPT gave me.
+
+- Use Case 3: Calculating the sentiment scores of a list of Reddit posts
+
+> Purpose for using the list comprehension: To calculate and store the sentiment scores of a list of Reddit posts using a sentiment analysis function, such as one from a library like TextBlob.
+> 
+> What the new list is for: Storing the calculated sentiment scores for further analysis, like identifying trends or finding correlations with other variables.
+> 
+> How I’m using an expression to transform items in the old list: By iterating through the list of Reddit posts and applying the sentiment analysis function to the ‘title’ attribute of each post object.
+
+Code example:
+ 
+ ```python
+ from text
+
+blob import TextBlob
+posts = [...]  # List of Reddit post objects
+def get_sentiment_score(text):
+    return TextBlob(text).sentiment.polarity
+sentiment_scores = [get_sentiment_score(post.title) for post in posts]
+```
+
+## Summing Up
+
+So let’s go over the steps I use to learn something deeply.
+
+1. **Explain Plainly**: Understand the purpose.
+2. **Translate to Pseudocode**: Convert to something familiar.
+3. **Map Pseudocode Back to Python Code**: Understand the connection between pseudocode and Python.
+4. **Abstract Explanation**: Understand abstract components.
+5. **Use Cases**: Visualize practical applications.
+
+Use these steps and ChatGPT prompts next time you face a tough programming concept!
+
+Cheers,  
+Nathan Laundry  
+[Intelligent Adaptive Interventions lab at UofT](https://www.josephjaywilliams.com)  
+[✉️ Join my Email Newsletter #GuidingQuestions here](https://guidingquestions.com)

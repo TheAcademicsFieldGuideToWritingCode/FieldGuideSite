@@ -62,8 +62,6 @@ export default function Post({ post, morePosts, preview }: Props) {
                             <PythonProvider>
                                 <PostContent />
                             </PythonProvider>
-                            <div className="border-solid bg-white p-12 rounded-lg my-8 drop-shadow-md">
-                            </div>
                         </>
                     )}
                 </article>
