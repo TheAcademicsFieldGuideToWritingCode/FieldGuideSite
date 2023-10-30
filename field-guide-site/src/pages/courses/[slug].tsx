@@ -20,6 +20,13 @@ import dynamic from 'next/dynamic'
 
 import { PythonProvider } from 'react-py/dist/providers/PythonProvider'
 
+
+
+const packages = {
+    official: [],
+    micropip: ['pyodide-http', 'python-cowsay', 'requests'],
+}
+
 type Props = {
     post: PostType
     morePosts: PostType[]
@@ -35,13 +42,9 @@ export default function Post({ post, morePosts, preview }: Props) {
         loading: () => <p>Loading...</p>,
         ssr: false
     });
-    // const PostContent = dynamic(() => import(`../../../_courses/content/week3_content.mdx`), {
-    //     loading: () => <p>Loading...</p>,
-    //     ssr: false
-    // });
 
     const router = useRouter()
-    const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`
+    const title = `${post.title}`
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404} />
     }
@@ -64,7 +67,7 @@ export default function Post({ post, morePosts, preview }: Props) {
                                 date={post.date}
                                 author={post.author}
                             />
-                            <PythonProvider>
+                            <PythonProvider packages={packages}>
                                 <PostContent />
                             </PythonProvider>
                         </>

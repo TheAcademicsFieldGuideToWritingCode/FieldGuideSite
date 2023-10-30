@@ -1,0 +1,90 @@
+import Container from '../../src/components/container';
+import Intro from '../../src/components/intro'
+import CodeBlock from '../../src/components/CodeBlock'
+
+
+# Python for Social-Behavioural Scientists Foundations Course
+
+
+## Our 0 pre-requisites Python for Social-Behavioural Scientists 12 week Course
+
+### In this course you’ll learn:
+
+- the basics of python including: variables, conditionals, loops, and functions
+- data structures with respect to data analysis packages like pandas and numpy
+- Data collection methods like web scraping, use of APIs
+- using LLMs for Social-Behavioural Science research
+
+
+## Lesson Plans
+
+### Application Context
+
+Our course philosophy is that if you don't know how a concept can be used BY YOU toward something that matters in your work or life, we've failed to teach you well. 
+That's why every lesson will start with a concrete application context and example like data collection and analysis so you can relate and apply what you're learning as you learn it.
+
+### Interactive Examples
+
+Programming is a skill. It can't be learned just by reading. That's why we build in fully executable and interactive code examples right in the browser so that you can practice coding right here on the Field Guide website.
+Lessons will build with progressively complex step-by-step code examples that all tie back to the application context so not only do you get to practice, you also see why what you're learning is useful to you. 
+
+#### Here's what those Examples will look like - try it now if ya like :)
+
+We highly encourage you to play around with the examples by extending them and even breaking them. These are great learning opportunities.
+
+<CodeBlock defaultCode={'print("hello")'}/>
+
+
+### Practice Problems
+
+Finally, we build our lessons with the concept of rapid formative feedback in mind. This means we want you to get high quality feedback on if you've learned the concepts ASAP. 
+To help you get that feedback each lesson concludes with a short practice problem including skeleton code to scaffold your learning and a set of tests that will tell you if your code works or doesn't. 
+
+#### Try it out for yourself!
+
+
+<CodeBlock defaultCode={`
+import sys
+from io import StringIO
+
+def hello_world():
+    # YOUR CODE GOES HERE
+    print("hello world")
+
+
+# TEST CODE DON'T EDIT
+def test_hello_world():
+    # Backup original stdout
+    original_stdout = sys.stdout 
+
+    # Redirect stdout to capture the print output
+    new_stdout = StringIO()
+    sys.stdout = new_stdout
+
+    # Call the function
+    hello_world()
+
+    # Reset stdout to original
+    sys.stdout = original_stdout 
+
+    # Check the captured output
+    assert new_stdout.getvalue().strip() == "hello world"
+    print("Success!")
+
+# Run the test
+test_hello_world()
+`}/>
+
+
+## Concluding Remarks
+
+This whole course is free and developed by me - Nathan Laundry - in my free time. I've really tried to embed everything I love about teaching and learning into the way I design this course and website. 
+That being said, my time is limited and I'm by no means a professional full-stack developer. This site will have bugs. There will be errors, typos, and little mistakes at first. 
+If you catch one, I'd really appreciate it if you let me know at nathan.laundry@gmail.com
+
+If you want to support me and the Field Guide you can do so here #TODO ADD COFFEE THINGY
+
+TODO LINK TO WEEK 1 Content
+
+
+

@@ -25,7 +25,7 @@ function CodeBlock({ defaultCode = '' }) {
   };
 
   return (
-    <div className="p-4 bg-slate-800 text-white rounded-md w-full">
+    <div className="p-4 bg-slate-700 text-white rounded-md w-full">
       {isLoading ? (
         <p className="text-yellow-500">Loading...</p>
       ) : (
@@ -54,11 +54,11 @@ function CodeBlock({ defaultCode = '' }) {
         {!isRunning ? 'Run' : 'Running...'}
       </button>
       <p className="mt-4 text-yellow-500">Output</p>
-      <pre className="p-2 bg-slate-700 rounded-md overflow-x-auto">
+      <pre className="p-2 bg-slate-600 rounded-md overflow-x-auto">
         <code className="break-all">{stdout}</code>
       </pre>
       <p className="mt-4 text-red-500">Error</p>
-      <pre className="p-2 bg-slate-700 rounded-md overflow-x-auto">
+      <pre className="p-2 bg-slate-600 rounded-md overflow-x-auto">
         <code className="break-all">{stderr}</code>
       </pre>
     </div>
